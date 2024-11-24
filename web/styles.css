@@ -1,0 +1,64 @@
+* {
+    background: black;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box; /*item size is not just item content*/
+    margin: 0;
+    padding: 0; /*deactivate styles which could come from browsers*/
+    overscroll-behavior: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; /* Disable scrolling */
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#content {
+    display: flex;
+    justify-content: center; /*horizontal*/
+    align-items: center; /*vertical*/
+    flex-direction: column;
+    height: 100vh;
+    text-align: center;
+}
+
+#scatchPadContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden; /*will be activated by user form*/
+}
+
+.formItem {
+    background: black;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 10px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.formItem:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.2); /* Add white glow */
+    color: black;
+}
+.formItem:active {
+    transform: scale(1.1); /* Make the button larger */
+    box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.8); /* Add white glow */
+}
+.formItem:disabled {
+    background: grey;
+    color: darkgrey;
+    border: 2px solid darkgrey;
+    cursor: not-allowed;
+    opacity: 0.6;
+}

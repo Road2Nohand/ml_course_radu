@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=0.95, user-scalable=0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Data Creator</title>
+</head>
+
+<body>
+    
+    <h1>Image Data Creator</h1>
+
+    <div id="content">        
+        <div>
+            <input class="formItem" type="text" id="userNameInput" placeholder="Dein Name..." style="cursor: text;"/>
+            <span id="instructions"></span>
+            <button class="formItem" id="advanceBtn" onclick="start();">START</button>
+        </div>
+
+        <div id="scatchPadContainer">
+            <!--Here will be the canvas for drawings-->
+        </div>
+    </div>
+    
+    <script src="js/draw.js"></script>
+    <script src="js/sketchPad.js"></script>
+    <script>
+        let index = 0;
+        const labels=["car", "fish", "house", "tree", "bicycle", "guitar", "pencil", "clock"];
+
+        const data = {
+            user: null,
+            session: new Date().getTime(),
+            drawings: {}
+        };
+
+        // this works because browsers will create globals for every item with an id
+        const sketchPad = new SketchPad(scatchPadContainer, 400);
+
+        function start() {
+            // get value of input box "user"
+            if (userNameInput.value === ""){
+                alert("Bitte zuerst einen Namen eingeben!");
+                return;
+            }
+            data.user = userNameInput.value;
+            userNameInput.style.display = "none";
+            scatchPadContainer.style.visibility = "visible";
+
+            const label = labels[index];
+            instructions.innerHTML = `Bitte zeichnen: '${label}'`;
+            advanceBtn.innerHTML = "Nächstes";
+            advanceBtn.onclick = next;
+        }
+
+        function next() {
+            console.log(`Index: ${index}, Label: ${labels[index]}`); // Debugging-Ausgabe
+
+            if (sketchPad.paths.length === 0) {
+                alert("Zuerst zeichnen!");
+                return;
+            }
+        
+            const label = labels[index];
+            data.drawings[label] = sketchPad.paths;
+            console.log(`Drawing gespeichert: ${label}`); // Debugging-Ausgabe
+        
+            sketchPad.reset();
+            index++;
+        
+            if (index < labels.length) {
+                const nextLabel = labels[index];
+                console.log(`Nächstes Label: ${nextLabel}`); // Debugging-Ausgabe
+                instructions.innerHTML = `Bitte zeichne: '${nextLabel}'`;
+            } else {
+                console.log("Alle Labels fertig."); // Debugging-Ausgabe
+                scatchPadContainer.style.visibility = "hidden";
+                instructions.innerHTML = "Fertig!";
+                advanceBtn.innerHTML = "Speichern!";
+                advanceBtn.onclick = save;
+            }
+        }
+
+        function save() {
+            console.log("Speichern gestartet..."); // Debugging-Ausgabe
+            advanceBtn.style.display = "none";
+            instructions.innerHTML = "Speichere die gedownloadete Datei im Datensatz!";
+
+            const element = document.createElement("a");
+            element.setAttribute(
+                "href",
+                "data:text/plain;charset=utf-8," +
+                encodeURIComponent(JSON.stringify(data))
+            );
+
+            const fileName = data.session + ".json";
+            element.setAttribute("download", fileName);
+            element.style.display = "none";
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+
+            console.log("Datei erfolgreich erstellt: " + fileName); // Debugging-Ausgabe
+        }
+
+    </script>
+    
+</body>
+</html>
