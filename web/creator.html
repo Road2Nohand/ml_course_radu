@@ -49,7 +49,7 @@
             scatchPadContainer.style.visibility = "visible";
 
             const label = labels[index];
-            instructions.innerHTML = `Bitte zeichnen: '${label}'`;
+            instructions.innerHTML = `${data.user} bitte zeichne: <b>'${label}'</b>`;
             advanceBtn.innerHTML = "Nächstes";
             advanceBtn.onclick = next;
         }
@@ -72,7 +72,7 @@
             if (index < labels.length) {
                 const nextLabel = labels[index];
                 console.log(`Nächstes Label: ${nextLabel}`); // Debugging-Ausgabe
-                instructions.innerHTML = `Bitte zeichne: '${nextLabel}'`;
+                instructions.innerHTML = `${data.user} bitte zeichne: <b>'${nextLabel}'</b>`;
             } else {
                 console.log("Alle Labels fertig."); // Debugging-Ausgabe
                 scatchPadContainer.style.visibility = "hidden";
@@ -85,7 +85,7 @@
         function save() {
             console.log("Speichern gestartet..."); // Debugging-Ausgabe
             advanceBtn.style.display = "none";
-            instructions.innerHTML = "Speichere die gedownloadete Datei im Datensatz!";
+            instructions.innerHTML = "Datei gespeichert!";
 
             const element = document.createElement("a");
             element.setAttribute(
