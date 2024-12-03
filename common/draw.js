@@ -1,3 +1,5 @@
+const { deflate } = require("zlib");
+
 const draw = {};
 
 draw.path = (ctx, path, color="black") => {
@@ -17,4 +19,9 @@ draw.paths = (ctx, paths, color="black") => {
     for (const path of paths) {
         draw.path(ctx, path, color);
     }
+}
+
+// falls Node import
+if (typeof module !== "undefined") {
+    module.exports = draw;
 }
