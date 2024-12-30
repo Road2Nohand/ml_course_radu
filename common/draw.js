@@ -1,5 +1,3 @@
-const { deflate } = require("zlib");
-
 const draw = {};
 
 draw.path = (ctx, path, color="black") => {
