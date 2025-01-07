@@ -2,19 +2,12 @@
 
 const fs = require("fs");
 const draw = require("../common/draw.js");
-const { createCanvas } = require("canvas");
+const constants = require("../common/constants.js");
+const utils = require("../common/utils.js");
 
+const { createCanvas } = require("canvas");
 const CANVAS = createCanvas(400, 400);
 const CTX = CANVAS.getContext("2d");
-
-const constants = {
-    DATA_DIR: "../data",
-    RAW_DIR: "../data/raw",
-    DATASET_DIR: "../data/dataset",
-    IMG_DIR: "../data/dataset/img",
-    JSON_DIR: "../data/dataset/json",
-    SAMPLES: "../data/dataset/samples.json"
-};
 
 //#endregion Globals
 
@@ -27,6 +20,7 @@ function generateImageFile(outFile, paths) {
     draw.paths(CTX, paths);
     const buffer = CANVAS.toBuffer("image/png");
     fs.writeFileSync(outFile, buffer);
+    console.log("Saved .png of drawing");
 }
 
 //#endregion Functions
@@ -63,7 +57,8 @@ fileNames.forEach( fn => {
         // save as IMG
         img_file_name_with_id = constants.IMG_DIR + "/" + id + ".png";
         generateImageFile(img_file_name_with_id, paths);
-        console.log("Saved .png of drawing");
+
+        utils.printProgress(id, fileNames.length*8); // 8 drawings per student
 
         id++;
     }
