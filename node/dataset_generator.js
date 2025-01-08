@@ -63,5 +63,11 @@ fileNames.forEach( fn => {
 // save in samples.json
 fs.writeFileSync(constants.SAMPLES, JSON.stringify(samples));
 
+// save as javascript variable so it can be ingested by .html files with a simple script-Tag
+fs.writeFileSync(
+    constants.SAMPLES_JS, 
+    "const samples=" + JSON.stringify(samples) + ";"
+);
+
 
 //#endregion Main
