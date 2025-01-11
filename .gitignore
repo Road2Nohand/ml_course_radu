@@ -1,3 +1,3 @@
 node_modules/
-img/
-json/
+data/dataset/img/*.png
+data/dataset/json/*.json
