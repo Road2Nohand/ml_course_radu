@@ -1,11 +1,13 @@
+const { cpSync } = require("fs");
+
 function createRow(container, studentName, samples) {
     const row = document.createElement("div");
     row.classList.add("row");
     container.appendChild(row);
 
-    const rowLabel = document.createElement("h2");
+    const rowLabel = document.createElement("p");
     rowLabel.innerHTML = studentName;
-    rowLabel.classList.add("rowlabel");
+    rowLabel.classList.add("rowLabel");
     row.appendChild(rowLabel);
 
     for (let sample of samples) {

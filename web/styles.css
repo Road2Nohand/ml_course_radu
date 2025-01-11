@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0; /*deactivate styles which could come from browsers*/
     overscroll-behavior: none;
+    box-sizing: border-box;    
 }
 
 html, body {
@@ -60,6 +61,32 @@ h1 {
     border: 2px solid darkgrey;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.thumb {
+    width: 8%; /* Beispiel für 8 Bilder pro Zeile, 15% für das Label */
+    transition: transform 0.1s ease-in-out;
+}
+
+.thumb:hover {
+    transform: scale(1.1); /* Bild wird größer */
+    cursor: pointer;
+}
+
+.rowLabel {
+    font-weight: bold;
+    width: 15%; /* Label nimmt 15% der Breite ein */
+    display: flex;
+    align-items: center; /* Vertikale Zentrierung */
+    justify-content: center; /* Horizontale Zentrierung */
+    white-space: wrap; /* Verhindert Umbrüche */
+    margin-left: 10px;
 }
 
 
