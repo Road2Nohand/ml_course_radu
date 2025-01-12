@@ -69,6 +69,16 @@ h1 {
     width: 100%;
 }
 
+#columnRow p {
+    width: 8%;
+    margin: 10px;
+}
+
+#columnRow .rowLabel {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
 .thumb {
     width: 8%; /* Beispiel für 8 Bilder pro Zeile, 15% für das Label */
     transition: transform 0.1s ease-in-out;
@@ -88,7 +98,6 @@ h1 {
     white-space: wrap; /* Verhindert Umbrüche */
     margin-left: 10px;
 }
-
 
 img {
     background-color: white;

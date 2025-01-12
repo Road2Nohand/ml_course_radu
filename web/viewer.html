@@ -11,7 +11,24 @@
 
 <body>
     <h1>Data Viewer</h1>
-    <div id="container"></div>
+    <br>
+    
+    <div id="container">
+        <div class="row" id="columnRow">
+            <p class="rowLabel">User:</p>
+            <p class="thumb">Car</p>
+            <p class="thumb">Fish</p>
+            <p class="thumb">House</p>
+            <p class="thumb">Tree</p>
+            <p class="thumb">Bicycle</p>
+            <p class="thumb">Guitar</p>
+            <p class="thumb">Pencil</p>
+            <p class="thumb">Clock</p>
+        </div>
+        <br>
+        <hr>
+    </div>
+
     <script src="../common/js_objects/samples.js"></script>
     <script src="../common/constants.js"></script>
     <script src="../common/utils.js"></script>
@@ -19,7 +36,6 @@
 
     <script>
         const groups = utils.groupBy(samples, "student_id");
-        console.log(groups);
 
         for (let student_id in groups) {
             const samples = groups[student_id];
