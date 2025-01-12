@@ -1,4 +1,3 @@
-const { cpSync } = require("fs");
 
 function createRow(container, studentName, samples) {
     const row = document.createElement("div");
@@ -12,9 +11,17 @@ function createRow(container, studentName, samples) {
 
     for (let sample of samples) {
         const {id, label} = sample;
+        const imgUrl = constants.IMG_DIR + "/" + id + ".png";
+
         const img = document.createElement("img");
-        img.src = constants.IMG_DIR + "/" + id + ".png";
+        img.src = imgUrl;
         img.classList.add("thumb");
+
+        // Jedes IMG im Vollbild öffnenbar
+        img.onclick = () => {
+            window.open(imgUrl);
+        }
+
         row.appendChild(img);
     }
 }
